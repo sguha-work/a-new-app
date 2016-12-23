@@ -12,10 +12,12 @@ MongoImpulse = {
     impulse: null,
     methods: null
 };
+
 /**
  * This object's value should be set by user which will be required to connect to the database 
  * 
 */
+
 MongoImpulse.connection = {
     mongodb: {
         adapter   : 'sails-mongo',
@@ -30,23 +32,42 @@ MongoImpulse.connection = {
 // fetching the module sails-mongo
 MongoImpulse.sailsMongo = require('sails-mongo');
 
+// all private methods need to use for database
 MongoImpulse.methods = (function() {
     
-    var getFileName;
+    var getFileName,
+        instance,
+        object;
     
     getFileName = (function() {
+            
+    });
+    
+    
+    object = {};
+    
+    object.writeTofile = (function(data) {
         
     });
     
-    this.writeTofile = (function(data) {
-        
-    });
+    function createInstance() {
+        return object;
+    }
+ 
+    return {
+        getInstance: function () {
+            if (!instance) {
+                instance = createInstance();
+            }
+            return instance;
+        }
+    };
     
-});
+})();
 
 MongoImpulse.impulse = {
     
-    methods: new MongoImpulse.methods(),
+    methods: new MongoImpulse.methods.getInstance(),
     
     insertInto: function(fileName, record) {
         
