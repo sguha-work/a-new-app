@@ -10,7 +10,10 @@ MongoImpulse = {
     sailsMongo: null,
     connection: null,
     impulse: null,
-    methods: null
+    methods: null,
+    fs: null,
+    defaultFolderName: null,
+    defaultFilePrefix: null
 };
 
 /**
@@ -31,6 +34,10 @@ MongoImpulse.connection = {
 
 // fetching the module sails-mongo
 MongoImpulse.sailsMongo = require('sails-mongo');
+MongoImpulse.fs = require('fs');
+
+MongoImpulse.defaultFolderName = 'data';
+MongoImpulse.defaultFilePrefix = 'mongoimpulse_data_';
 
 // all private methods need to use for database
 MongoImpulse.methods = (function() {
@@ -39,15 +46,44 @@ MongoImpulse.methods = (function() {
         instance,
         object;
     
-    getFileName = (function() {
-            
-    });
-    
     
     object = {};
     
     object.writeTofile = (function(data) {
         
+    });
+    
+    object.checkIfDirectoryExists = (function(path) {
+        return new Promise(function(resolve, reject) {
+            MongoImpulse.fs.readdir(path, function(error, data) {
+                if(error) {
+                    reject();
+                } else {
+                    resolve();
+                }
+            });    
+        });
+        
+    });
+    
+    object.createEmptyFile = (function(path, fileName) {
+        return new Promise(function(resolve, reject) {
+            
+        });
+    });
+    
+    object.checkIfFileExists = (function(path) {
+        return new Promise(function(resolve, reject) {
+            
+        });
+    });
+    
+    object.getFileName = (function() {
+        return new Promise(function(resolve, reject){
+            object.checkIfDirectoryExists(MongoImpulse.defaultFolderName).then(function(){
+                
+            }, function() {});
+        });
     });
     
     function createInstance() {
