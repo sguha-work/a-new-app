@@ -66,23 +66,49 @@ MongoImpulse.methods = (function() {
         
     });
     
+    /**
+	* @description - Creates an empty file on specified path
+	* @param path {String} - The path where the file should be created
+	* @param fileName {String} - The name of the file
+	* @return {Promise} - Return a promise object with success and error callback
+	*/
     object.createEmptyFile = (function(path, fileName) {
         return new Promise(function(resolve, reject) {
             
         });
     });
     
+    /**
+	* @description - Check if the file already exists in folder or not
+	* @param path {String} - The path where the file should be created
+	* @return {Promise} - Return a promise object with success callback, the resolve method will have
+	*                     a parameter which is true if the file exists and false if the file doesn't     
+	*/
     object.checkIfFileExists = (function(path) {
         return new Promise(function(resolve, reject) {
-            
+            MongoImpulse.fs.stat(path, function(error, stat) {
+                if(error) {
+                    resolve(false);
+                } else {
+                    resolve(true);
+                }
+            });
         });
     });
     
     object.getFileName = (function() {
         return new Promise(function(resolve, reject){
             object.checkIfDirectoryExists(MongoImpulse.defaultFolderName).then(function(){
+                // If the directory exists these code will be executed
+                var fileName = MongoImpulse.defaultFilePrefix+(new Date()).now()+".data";
                 
-            }, function() {});
+                object.checkIfFileExists(fileName).then(function(exists) {
+                    
+                });
+            }, function() {
+               // If  the directory is not there the these will be executed
+               
+            });
         });
     });
     
