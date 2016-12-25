@@ -103,7 +103,12 @@ MongoImpulse.methods = (function() {
                 var fileName = MongoImpulse.defaultFilePrefix+(new Date()).now()+".data";
                 
                 object.checkIfFileExists(fileName).then(function(exists) {
-                    
+                    if(exists) {
+                        fileName = MongoImpulse.defaultFilePrefix+(new Date()).now()+"_2"+".data";
+                        resolve(fileName)
+                    } else {
+                        resolve(fileName);
+                    }
                 });
             }, function() {
                // If  the directory is not there the these will be executed
