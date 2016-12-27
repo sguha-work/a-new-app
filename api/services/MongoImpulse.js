@@ -112,7 +112,16 @@ MongoImpulse.methods = (function() {
                 });
             }, function() {
                // If  the directory is not there the these will be executed
-               
+               MongoImpulse.fs.mkdir(MongoImpulse.defaultFolderName, function(error) {
+                   if(error) {
+                       // if directory creating failed
+                       reject(error);
+                   } else {
+                       // directory created
+                       var fileName = MongoImpulse.defaultFilePrefix+(new Date()).now()+".data";
+                       resolve(fileName);
+                   }
+               });
             });
         });
     });
