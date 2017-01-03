@@ -98,6 +98,9 @@ MongoImpulse.methods = (function() {
     
     object.getFileName = (function() {
         return new Promise(function(resolve, reject){
+            if(typeof MongoImpulse.dbFileName != 'undefined') {
+                resolve(MongoImpulse.dbFileName);
+            }
             object.checkIfDirectoryExists(MongoImpulse.defaultFolderName).then(function(){
                 // If the directory exists these code will be executed
                 var fileName = MongoImpulse.defaultFilePrefix+(new Date()).now()+".data";
@@ -125,6 +128,15 @@ MongoImpulse.methods = (function() {
             });
         });
     });
+    
+    object.setFileName = (function() {
+        object.getFileName().then(function(fileName) {
+            MongoImpulse.dbFileName = MongoImpulse.defaultFolderName + "/" + fileName;
+        }, function() {
+            console.error(" Unable to get file name");
+        });
+    });
+    object.setFileName();
     
     function createInstance() {
         return object;
