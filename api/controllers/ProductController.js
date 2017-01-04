@@ -12,6 +12,9 @@ module.exports = {
      * access URL: http://my-work-sguha-work.c9users.io:8080/product/add
      */
 	add: function(request, response) {
+	    if(RequestService.restrictIfNotPostMethod(request)) {
+	        return response.forbidden();
+	    }
 	    return response.send({data:"hello"});
 	}
 };
