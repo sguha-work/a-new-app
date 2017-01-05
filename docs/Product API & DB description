@@ -5,10 +5,16 @@ API’s for product
     request type POST
     Data : 
     {
-        product_name: “***”, // {String} should not be empty,
-        product_description: “***”, // {String} should not be empty
-        Product_images: [], // {Array of image Objects}
-    
+        productName: “***”, // {String} should not be empty,
+        productDescription: “***”, // {String} should not be empty
+        productImages: [], // {Array of image ids}
+        categoryId:0, // {Number} should not be empty
+        status: "", // private public
+        sharedWithUser: [], // array of user email
+        quantity: 0, // {Number},
+        discountIds: [], // Array of discount ids
+        createdByUserEmail: "",
+        
     }
 
     2> domain/product/update
@@ -92,8 +98,8 @@ Database for  Product related functionality
 
 4> db_product_category
 	1> _id
-1> db_product_id
-	2>db_category_id
+	2> product_id
+	2> category_id
 
 5> db_product_modification
 	1> _id
@@ -126,17 +132,20 @@ Database for  Product related functionality
 	2> status (0-private, 1- public)
 
 10> db_product_belongings
-1> _id
-2> product_id
-3> user_id	
+    1> _id
+    2> product_id
+    3> user_id	
+    4> quantity
 
 11> db_discount
 	1> discount_id
-	2> discount_valid_from
-	3> discount_valid_to
-	4> discount_percentage
-	5> discount_created_by_user_id
-	6> discount_created_on
+	2> discount_title
+	3> discount_valid_from
+	4> discount_valid_to
+	5> discount_percentage
+	6> discount_created_by_user_id
+	7> discount_created_on
+	8> discount_description
 
 12> db_discount_for_product
 	1> _id
