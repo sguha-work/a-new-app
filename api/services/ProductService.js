@@ -115,7 +115,6 @@ ProductService.utilities = new ProductService.methods();
  */
 module.exports = {
     add: function (productObject) {
-        console.log(productObject);
         var promise = new Promise(function (resolve, reject) {
             ProductService.utilities.addProduct(productObject).then(function (data) {
                 resolve(data);
