@@ -1,0 +1,149 @@
+API’s for product
+*****************
+
+    1> domain/product/add   
+    request type POST
+    Data : 
+    {
+        product_name: “***”, // {String} should not be empty,
+        product_description: “***”, // {String} should not be empty
+        Product_images: [], // {Array of image Objects}
+    
+    }
+
+    2> domain/product/update
+    Request type POST
+    Data
+    
+    3> domain/product/delete
+    Request type POST
+    Data
+    
+    4> domain/product/get
+    Request type POST
+    Data
+    
+    5> domain/category/add
+    Data 
+    {
+        category_name: “***”, // {String} should not be empty,
+        category_description: “***”, // {String} should not be empty
+        category_images: {},// {Object/Array} Array of image objects, sample image object given below
+        category_created_by_user_id: “”, // the user who created the category
+        auth_token: {}// {Object} details of auth token object is written below
+    }
+    
+    Sample image Object:
+    {
+        title: “”,// {String} may be empty, default empty string
+        data: “”// {base64EncodedString}, represent the image data
+    }
+    
+    Auth_token object:
+    {
+        user_id: “”// {String} user id, mast not be empty
+        auth_token: “”// {String}
+    }
+    
+    6> domain/category/update
+    
+    7> domain/category/delete
+    
+    8> domain/category/get
+    
+    9> domain/discount/add
+    
+    10>domain/discount/update
+    
+    11>domain/discount/delete
+    
+    12>domain/discount/get
+
+
+************************************************************************************************************
+Database for  Product related functionality
+*******************************************
+1> db_category
+	1> category_id
+	2> category_parent_id (0 by default to represent root category)
+	3> category_name
+	4> category_description
+	5> category_images (array of image ids)
+	6>category_created_on
+	7> category_created_by_user_id
+
+2> db_category_modification
+	1> _id
+	2> category_id
+	3> category_modified_by_user_id
+	4> category_modified_on
+	5> category_modification_description
+	6> category_before_modification_state (holds the whole category object before modification)
+
+3> db_product
+	1> product_id
+	2> product_name
+	3> product_description
+	4> product_images (array of image ids)
+	5> product_created_by_user_id
+	6> product_created_on
+
+
+
+4> db_product_category
+	1> _id
+1> db_product_id
+	2>db_category_id
+
+5> db_product_modification
+	1> _id
+	2> product_id
+	3> product_modified_by_user_id
+	4> product_modified_on
+	5> product_modification_description
+	6> product_before_modification_state (holds the whole product object before modification)
+
+6> db_image
+	1> image_id
+	2> image_title
+	3> image_data
+	4> image_uploaded_on
+	5> image_uploaded_by_user_id
+
+7> db_product_to_image
+	1> _id
+	2> image_id
+	3> product_id
+
+8> db_category_to_image
+	1> _id
+	2> image_id
+	3> category_id
+
+
+9> db_product_status
+	1> product_id
+	2> status (0-private, 1- public)
+
+10> db_product_belongings
+1> _id
+2> product_id
+3> user_id	
+
+11> db_discount
+	1> discount_id
+	2> discount_valid_from
+	3> discount_valid_to
+	4> discount_percentage
+	5> discount_created_by_user_id
+	6> discount_created_on
+
+12> db_discount_for_product
+	1> _id
+	2> discount_id
+	3> product_id
+
+13> db_discount_for_category
+	1> _id
+	2> discount_id
+	3> category_id
