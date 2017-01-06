@@ -27,10 +27,10 @@ ProductService.utilities = new ProductService.methods();
  */
 module.exports = {
     add: function (productObject) {
-        var promise = new Promise(function (resolve, reject) {
-            ProductService.utilities.addProduct(productObject).then(function (data) {
+        var promise = new Promise((resolve, reject) => {
+            ProductService.utilities.addProduct(productObject).then((data) => {
                 resolve(data);
-            }, function (error) {
+            }, (error) => {
                 reject(error);
             });
         });

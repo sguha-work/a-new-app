@@ -12,7 +12,7 @@ ProductService.methods = (function () {
      * @description: This function take the raw product object from user input 
      * and prepare the final object which will be reflected to database
      */
-    prepareProductObject = (function (productObject) {
+    prepareProductObject = ((productObject) => {
         var promise,
             task1, // first task is to get user id from user email provided by user
             task2,
@@ -23,15 +23,15 @@ ProductService.methods = (function () {
         finalProductObject.product_description = productObject.productDescription;
         finalProductObject.created_on = Date.now();
 
-        task1 = UserService.getUserIdFromUserEmail(productObject.createdByUserEmail).then(function (userId) {
+        task1 = UserService.getUserIdFromUserEmail(productObject.createdByUserEmail).then((userId) => {
             finalProductObject.product_created_by_user_id = userId;
         });
 
 
-        promise = new Promise(function (resolve, reject) {
-            Promise.all([task1]).then(function () {
+        promise = new Promise((resolve, reject) => {
+            Promise.all([task1]).then(() => {
                 resolve(finalProductObject);
-            }, function (error) {
+            }, (error) => {
                 console.log(error);
             });
         });
@@ -39,8 +39,8 @@ ProductService.methods = (function () {
     });
 
 
-    insertProductInDatabase = (function (data) {
-        var promise = new Promise(function (resolve, reject) {
+    insertProductInDatabase = ((data) => {
+        var promise = new Promise((resolve, reject) => {
             resolve(data);
         });
         return promise;
@@ -58,21 +58,23 @@ ProductService.methods = (function () {
      *       status: "", // private public
      *       sharedWithUser: [], // array of user email
      *       quantity: 0, // {Number},
+     *       productUnitPrice: 0, {Number}
+     *       productPriceTypeId:0,{id of price type}
      *       discountIds: [], // Array of discount ids
      *       createdByUserEmail: "",
      *   
      *   }
      * 
      */
-    this.addProduct = (function (productObject) {
-        var promise = new Promise(function (resolve, reject) {
-            prepareProductObject(productObject).then(function (data) {
-                insertProductInDatabase(data).then(function (data) {
+    this.addProduct = ((productObject) => {
+        var promise = new Promise((resolve, reject) => {
+            prepareProductObject(productObject).then((data) => {
+                insertProductInDatabase(data).then((data) => {
                     resolve(data);
-                }, function (error) {
+                }, (error) => {
                     reject(error);
                 });
-            }, function (error) {
+            }, (error) => {
                 reject(error);
             });
 
@@ -81,11 +83,11 @@ ProductService.methods = (function () {
         return promise;
     });
 
-    this.editProduct = (function (productObject) {
+    this.editProduct = ((productObject) => {
 
     });
 
-    this.removeProduct = (function (productId) {
+    this.removeProduct = ((productId) => {
 
     });
 });
