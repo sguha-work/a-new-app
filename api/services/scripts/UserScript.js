@@ -5,7 +5,8 @@ UserService.methods = (function () {
         var promise = new Promise(function (resolve, reject) {
             resolve(1);
         });
+        return promise;
     });
 });
 
-module.exports(UserService);
+module.exports = UserService;
