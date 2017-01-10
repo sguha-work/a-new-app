@@ -33,7 +33,7 @@ ProductService.methods = (function () {
 
         // getting price type id from price title
         task2 = PriceService.getPriceTypeIdFromTitle(productObject.priceTypeTitle).then((priceTypeId) => {
-            finalProductObject.price_type_id = priceTypeId;
+            finalProductObject.product_price_type_id = priceTypeId;
         }, (error) => {
             console.error("Price type id not found");
         });
@@ -70,7 +70,7 @@ ProductService.methods = (function () {
      *       sharedWithUser: [], // array of user email
      *       quantity: 0, // {Number},
      *       productUnitPrice: 0, {Number}
-     *       productPriceTypeId:0,{id of price type}
+     *       priceTypeId:0,{id of price type}
      *       discountIds: [], // Array of discount ids
      *       createdByUserEmail: "",
      *   

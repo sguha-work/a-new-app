@@ -91,7 +91,7 @@ Database for  Product related functionality
 	2> product_name
 	3> product_description
 	4> product_unit_price
-	5> product_price_type
+	5> product_price_type_id
 	6> product_images (array of image ids)
 	7> product_created_by_user_id
 	8> product_created_on
