@@ -24,11 +24,18 @@ ProductService.methods = (function () {
         finalProductObject.created_on = Date.now();
         finalProductObject.product_unit_price = productObject.productUnitPrice;
 
+        // getting user id from user email
         task1 = UserService.getUserIdFromUserEmail(productObject.createdByUserEmail).then((userId) => {
             finalProductObject.product_created_by_user_id = userId;
+        }, (error) => {
+            console.error("User id not found");
         });
+
+        // getting price type id from price title
         task2 = PriceService.getPriceTypeIdFromTitle(productObject.priceTypeTitle).then((priceTypeId) => {
             finalProductObject.price_type_id = priceTypeId;
+        }, (error) => {
+            console.error("Price type id not found");
         });
 
 
