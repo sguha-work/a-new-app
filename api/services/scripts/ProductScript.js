@@ -27,16 +27,18 @@ ProductService.methods = (function () {
         task1 = UserService.getUserIdFromUserEmail(productObject.createdByUserEmail).then((userId) => {
             finalProductObject.product_created_by_user_id = userId;
         });
-        task2 =
+        task2 = PriceService.getPriceTypeIdFromTitle(productObject.priceTypeTitle).then((priceTypeId) => {
+            finalProductObject.price_type_id = priceTypeId;
+        });
 
 
-            promise = new Promise((resolve, reject) => {
-                Promise.all([task1]).then(() => {
-                    resolve(finalProductObject);
-                }, (error) => {
-                    console.log(error);
-                });
+        promise = new Promise((resolve, reject) => {
+            Promise.all([task1]).then(() => {
+                resolve(finalProductObject);
+            }, (error) => {
+                console.log(error);
             });
+        });
         return promise;
     });
 
