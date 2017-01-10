@@ -22,19 +22,21 @@ ProductService.methods = (function () {
         finalProductObject.product_name = productObject.productName;
         finalProductObject.product_description = productObject.productDescription;
         finalProductObject.created_on = Date.now();
+        finalProductObject.product_unit_price = productObject.productUnitPrice;
 
         task1 = UserService.getUserIdFromUserEmail(productObject.createdByUserEmail).then((userId) => {
             finalProductObject.product_created_by_user_id = userId;
         });
+        task2 =
 
 
-        promise = new Promise((resolve, reject) => {
-            Promise.all([task1]).then(() => {
-                resolve(finalProductObject);
-            }, (error) => {
-                console.log(error);
+            promise = new Promise((resolve, reject) => {
+                Promise.all([task1]).then(() => {
+                    resolve(finalProductObject);
+                }, (error) => {
+                    console.log(error);
+                });
             });
-        });
         return promise;
     });
 

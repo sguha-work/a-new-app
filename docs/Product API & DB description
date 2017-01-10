@@ -148,9 +148,10 @@ Database for  Product related functionality
 	3> discount_valid_from
 	4> discount_valid_to
 	5> discount_percentage
-	6> discount_created_by_user_id
-	7> discount_created_on
-	8> discount_description
+	6> discount_image_id
+	7> discount_created_by_user_id
+	8> discount_created_on
+	9> discount_description
 
 13> db_discount_for_product
 	1> _id
