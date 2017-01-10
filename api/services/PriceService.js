@@ -1,9 +1,9 @@
 var PriceService = require('./scripts/PriceScript.js');
-ProductService.utilities = new ProductService.methods();
+PriceService.utilities = new PriceService.methods();
 module.exports = {
     getPriceTypeIdFromTitle: function (priceTypeId) {
         var promise = new Promise((resolve, reject) => {
-            ProductService.utilities.getPriceTypeIdFromTitle(priceTypeId).then((priceTypeId) => {
+            PriceService.utilities.getPriceTypeIdFromTitle(priceTypeId).then((priceTypeId) => {
                 resolve(priceTypeId);
             }, (error) => {
                 reject(error);

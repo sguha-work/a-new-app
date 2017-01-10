@@ -9,3 +9,4 @@ PriceService.methods = (function () {
         return promise;
     });
 });
+module.exports = PriceService;
